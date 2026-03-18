@@ -1,6 +1,7 @@
 import CapsuleButton from "../ui-element/CapsuleButton";
 import { useForm } from 'react-hook-form';
 import CustomInputForm from "../ui-element/CustomInputForm";
+import BaseForm from "../ui-element/BaseForm";
 
 export default function AcradeForm({ submitAcrade }) {
 
@@ -18,7 +19,7 @@ export default function AcradeForm({ submitAcrade }) {
         submitAcrade(input);
         reset();
     }
-    return (<form className="form-container" onSubmit={handleSubmit(handleSubmitAcrade)}>
+    return (<BaseForm onSubmit={handleSubmit(handleSubmitAcrade)}>
 
         <h1>Form</h1>
         <CustomInputForm text="Nama" id="nama"
@@ -40,7 +41,7 @@ export default function AcradeForm({ submitAcrade }) {
         <div className="submit-button-container">
             <CapsuleButton type="submit"> <i className="fas fa-save"></i> <span> Save Acrade</span></CapsuleButton>
         </div>
-    </form>);
+    </BaseForm>);
 }
 {/* <div className="mb-5">
     <label htmlFor="">Nama</label>

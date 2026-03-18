@@ -181,7 +181,7 @@ body{
     margin: 0 4px;
     color:#FFE02F;
 } */
-
+/* 
 .form-container{
     border-left:solid 2px #FC9CFF;
     padding-left: 25px;
@@ -203,7 +203,7 @@ body{
     box-sizing: border-box;
     padding: 0 10px;
     border-radius: 6px;
-}
+} */
 /* 
 .capsule-button{
    
@@ -227,7 +227,7 @@ body{
     padding-right: 8px;
     text-align: right;
 }
-.mb-5{
+/* .mb-5{
     margin-bottom: 10px;
 }
 .validation{
@@ -236,4 +236,4 @@ body{
     font-size:small;
     background-color:rgba(185, 106, 106, 0.1);
     opacity: 0.7;
-}
+} */

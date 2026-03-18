@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import CustomInputForm from "../ui-element/CustomInputForm";
 import CapsuleButton from "../ui-element/CapsuleButton";
+import BaseForm from "../ui-element/BaseForm";
 
 export default function PlayerForm({ submitPlayer }) {
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
@@ -14,7 +15,7 @@ export default function PlayerForm({ submitPlayer }) {
         submitPlayer(input);
         reset();
     }
-    return (<form className="form-container" onSubmit={handleSubmit(handleSubmitPlayer)}>
+    return (<BaseForm onSubmit={handleSubmit(handleSubmitPlayer)}>
         <h1>Form</h1>
         <CustomInputForm text={"username"} id="username"
             error={errors?.username}
@@ -31,5 +32,5 @@ export default function PlayerForm({ submitPlayer }) {
         <div className="submit-button-container">
             <CapsuleButton type="submit"><i className="fas fa-save"></i> <span>Save Player</span></CapsuleButton>
         </div>
-    </form>)
+    </BaseForm>)
 }

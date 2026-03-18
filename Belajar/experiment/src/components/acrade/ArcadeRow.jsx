@@ -16,7 +16,7 @@ export default function ArcadeRow({ id, name, year, developer, coins, handleClic
     // expresion fungsi
    
     return (
-        <tr>
+        <tr key={id}>
             <td>
                 <CapsuleButton type="button" onClick={() => handleClick(id)}>
                     <i className='fas fa-trash'></i> <span>Delete</span>
