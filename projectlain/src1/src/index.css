@@ -1,0 +1,110 @@
+@font-face {
+    font-family: 'Baloo';
+    src: url(fonts/Baloo2.ttf);
+}
+@font-face {
+    font-family: 'Playwrite';
+    src: url(fonts/Playwrite.ttf);
+}
+body{
+    font-family: 'Baloo';
+    font-size: 16px;
+    color:white;
+    background-image: linear-gradient(to right, #3F1778, #0E0822);
+}
+.logo-container{
+    display: block;
+    width: 200px;
+    height: 130px;
+    margin:60px auto 40px auto;
+    position: relative;
+}
+.logo-container span{
+    font-family: 'Playwrite';
+    font-size: 30px;
+    position:absolute;
+    top: 72px;
+    left: 12px;
+    transform: rotate(348deg);
+    animation: flickerText 1.5s infinite alternate;
+}
+@keyframes flickerText {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow:
+        0 0 7px #FBC6FF,
+        0 0 10px #FC9CFF,
+        0 0 21px #FC9CFF,
+        0 0 42px #FF24EB,
+        0 0 82px #FF24EB,
+        0 0 92px #FF24EB,
+        0 0 102px #FF24EB,
+        0 0 151px #FF24EB;
+    }
+    20%, 24%, 55% {        
+        text-shadow: none;
+    }  
+}
+.logo-container .fab{
+    font-size: 70px;
+    color:white;
+    position: absolute;
+    top: 0;
+    left: 49px;
+    transform: rotate(222deg);
+    animation: flickerImage 1.5s infinite alternate;
+}
+@keyframes flickerImage {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow:
+        0 0 7px #96E4FF,
+        0 0 10px #72E7FF,
+        0 0 21px #72E7FF,
+        0 0 42px #0AD7FF,
+        0 0 82px #0AD7FF,
+        0 0 92px #0AD7FF,
+        0 0 102px #0AD7FF,
+        0 0 151px #0AD7FF;
+    }
+    20%, 24%, 55% {        
+        text-shadow: none;
+    }  
+}
+.global-wrapper{
+    width: 60%;
+    border: solid 2px #FC9CFF;
+    border-radius: 8px;
+    margin: 0 auto;
+    min-width: 540px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.general-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.general-table th{
+    font-weight: normal;
+    text-align: left;
+    color:#19D9FF;
+}
+.general-table th,
+.general-table td{
+    padding: 18px;
+    border-bottom: solid 1px white;
+}
+.general-table tr:last-child td{
+    border-bottom: none;
+}
+.footer{
+    text-align: center;
+    margin-top: 40px;
+    text-shadow:
+        0 0 7px #96E4FF,
+        0 0 10px #72E7FF,
+        0 0 21px #72E7FF,
+        0 0 42px #0AD7FF,
+        0 0 82px #0AD7FF,
+        0 0 92px #0AD7FF,
+        0 0 102px #0AD7FF,
+        0 0 151px #0AD7FF;
+}
