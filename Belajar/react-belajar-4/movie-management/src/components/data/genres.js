@@ -1,0 +1,1 @@
+export default [ 'action', 'horror', 'comedy' ];
