@@ -1,3 +1,4 @@
+import BaseTable from "../ui-element/BaseTable.jsx";
 import ArcadeRow from "./ArcadeRow.jsx";
 // import arcades from "../../data/arcades.js";
 
@@ -23,7 +24,7 @@ function loopArcade(arcades, handleDelete) {
 export default function ArcadeTable({arcades, handleDelete}) {
     console.log('Generate ArcadeTable');
     return (
-        <table className="general-table">
+        <BaseTable>
             <thead>
                 <tr>
                     <th>Actions</th>
@@ -41,6 +42,6 @@ export default function ArcadeTable({arcades, handleDelete}) {
                 })} 
             </tbody>*/}
 
-        </table>
+        </BaseTable>
     )
 }

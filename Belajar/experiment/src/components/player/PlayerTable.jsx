@@ -1,3 +1,4 @@
+import BaseTable from "../ui-element/BaseTable";
 import PlayerRow from "./PlayerRow";
 
 const loopPlayer = (players, handleDelete) => {
@@ -10,7 +11,7 @@ const loopPlayer = (players, handleDelete) => {
     return <tbody>{element}</tbody>
 }
 export default function PlayerTable({ players, handleDelete }) {
-    return <table className="general-table">
+    return <BaseTable>
         <thead>
             <tr>
                 <th>Actions</th>
@@ -21,5 +22,5 @@ export default function PlayerTable({ players, handleDelete }) {
             </tr>
         </thead>
         {loopPlayer(players, handleDelete)}
-    </table>;
+    </BaseTable>;
 }
