@@ -9,8 +9,8 @@ const CenterTitle = styled.h1`
     text-transform:capitalize;
 `;
 
-export default function PageHeader({title}){
+export default function PageHeader({children}){
     return (
-        <CenterTitle>{title}</CenterTitle>
+        <CenterTitle>{children}</CenterTitle>
     )
 }

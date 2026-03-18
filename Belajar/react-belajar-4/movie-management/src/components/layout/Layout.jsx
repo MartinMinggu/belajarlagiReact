@@ -1,4 +1,5 @@
-import {styled} from 'styled-components';
+import { styled } from 'styled-components';
+import PageHeader from './PageHeader';
 
 const AppContent = styled.div`
   font-family: sans-serif;
@@ -10,10 +11,10 @@ const GlobalContainer = styled.main`
   margin: 0 auto;
 `;
 
-export default function Layout({children, pageHeader}){
+export default function Layout({ children, title }) {
     return (<>
         <AppContent>
-            {pageHeader}
+            <PageHeader>{title}</PageHeader>
             <GlobalContainer>
                 {children}
             </GlobalContainer>
