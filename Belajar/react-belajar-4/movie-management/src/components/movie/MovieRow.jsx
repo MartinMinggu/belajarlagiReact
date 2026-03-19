@@ -1,11 +1,19 @@
 import SimpleCard from '../ui-element/SimpleCard';
 import BaseButton from '../ui-element/BaseButton';
+import { CinemaContext } from '../../providers/CinemaContext';
+import { useContext } from 'react';
 
-export default function MovieRow({movie, openMovieForm, deleteMovie}){
-    const {id, title, duration, production, status, rating, summary} = movie;
+export default function MovieRow({ movie }) {
+    console.log('movie row terpangggil');
+    
+    console.log(movie);
+    
+
+    const { selectMovie, deleteMovie } = useContext(CinemaContext);
+    const { id, title, duration, production, status, rating, summary } = movie;
 
     const statusLabel = status => {
-        switch(status){
+        switch (status) {
             case 'NS':
                 return 'Not Showing';
             case 'CS':
@@ -18,7 +26,7 @@ export default function MovieRow({movie, openMovieForm, deleteMovie}){
     }
 
     const ratingLabel = rating => {
-        switch(rating){
+        switch (rating) {
             case 'G':
                 return 'General Audiences';
             case 'PG':
@@ -50,7 +58,7 @@ export default function MovieRow({movie, openMovieForm, deleteMovie}){
                 </div>
                 <div className="right">
                     <div className="button-container">
-                        <BaseButton type="button" onClick={() => openMovieForm(id)}>Edit</BaseButton>
+                        <BaseButton type="button" onClick={() => selectMovie(id)}>Edit</BaseButton>
                         <BaseButton type="button" onClick={() => deleteMovie(id)}>Delete</BaseButton>
                     </div>
                     <div>

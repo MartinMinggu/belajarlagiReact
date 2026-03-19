@@ -7,12 +7,33 @@ import BaseDropdown from '../ui-element/BaseDropdown';
 import BaseTextarea from '../ui-element/BaseTextarea';
 import ratingData from '../data/rating';
 import FormRow from '../ui-element/FormRow';
+import { CinemaContext } from '../../providers/CinemaContext'
+import { useContext } from 'react';
 
-export default function MovieForm({cancelMovieForm, insertMovie}){
-    const {register, handleSubmit} = useForm();
+export default function MovieForm() {
+    // cancelMovieForm, insertMovie
+    const { selectMovie, upsertMovie, selectedMovieId, getSelectedMovie } = useContext(CinemaContext);
+    let defaultValues =
+    {
+        // "id": null,
+        // "title": "",
+        // "duration": 200,
+        // "production": "",
+        // "status": "",
+        // "rating": "",
+        // "summary": ""
 
+    };
+    if (selectedMovieId !== null) {
+        defaultValues = getSelectedMovie(selectedMovieId);
+    }
+    console.log("defaultValues : ", defaultValues);
+    
+    const { register, handleSubmit } = useForm({
+        defaultValues: defaultValues
+    });
     const saveMovie = input => {
-        insertMovie({...input});
+        upsertMovie({ ...input });
     }
 
     return (
@@ -20,11 +41,11 @@ export default function MovieForm({cancelMovieForm, insertMovie}){
             <form onSubmit={handleSubmit(saveMovie)}>
                 <FormRow>
                     <span>Title*:</span>
-                    <BaseTextbox {...register('title')} type='text'/>
+                    <BaseTextbox {...register('title')} type='text' />
                 </FormRow>
                 <FormRow>
                     <span>Production:</span>
-                    <BaseTextbox {...register('production')} type='text'/>
+                    <BaseTextbox {...register('production')} type='text' />
                 </FormRow>
                 <FormRow>
                     <span>Duration:</span>
@@ -33,13 +54,13 @@ export default function MovieForm({cancelMovieForm, insertMovie}){
                 </FormRow>
                 <FormRow>
                     <span>Status:</span>
-                    <BaseRadioButton {...register('status')} name='status' value='CS' label={'Coming Soon'}/>
-                    <BaseRadioButton {...register('status')} name='status' value='NP' label={'Now Playing'}/>
-                    <BaseRadioButton {...register('status')} name='status' value='NS' label={'No Showing'}/>
+                    <BaseRadioButton {...register('status')} name='status' value='CS' label={'Coming Soon'} />
+                    <BaseRadioButton {...register('status')} name='status' value='NP' label={'Now Playing'} />
+                    <BaseRadioButton {...register('status')} name='status' value='NS' label={'No Showing'} />
                 </FormRow>
                 <FormRow>
                     <span>Rating:</span>
-                    <BaseDropdown {...register('rating')} options={ratingData}/>
+                    <BaseDropdown {...register('rating')} options={ratingData} />
                 </FormRow>
                 <FormRow>
                     <div>
@@ -48,7 +69,7 @@ export default function MovieForm({cancelMovieForm, insertMovie}){
                     <BaseTextarea {...register('summary')}></BaseTextarea>
                 </FormRow>
                 <div className='button-container'>
-                    <BaseButton type="button" onClick={cancelMovieForm}>Cancel</BaseButton>
+                    <BaseButton type="button" onClick={() => selectMovie(null)}>Cancel</BaseButton>
                     <BaseButton type="submit">Save Movie</BaseButton>
                 </div>
             </form>

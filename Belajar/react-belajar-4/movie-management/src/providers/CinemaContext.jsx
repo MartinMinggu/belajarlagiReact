@@ -16,7 +16,7 @@ const CinemaContext = createContext({
     selectMoviesByGenre: () => { },
     upsertMovie: () => { },
     deleteMovie: () => { },
-    getSelectedMovie : () => {}
+    getSelectedMovie: () => { }
 })
 const CinemaProvider = ({ children }) => {
     const [cinema, setCinema] = useState({
@@ -53,13 +53,15 @@ const CinemaProvider = ({ children }) => {
         });
     }
     const selectMovie = id => setCinema(prev => ({ ...prev, selectedMovieId: id }));
-    const selectMoviesByGenre = () => cinema.filter(movie => movie.genre === cinema.selectedGenre);
-    const getSelectedMovie = () => cinema.filter(movie => movie.id === cinema.selectedMovieId);
+    const selectMoviesByGenre = () => cinema.movies.filter(movie => movie.genre === cinema.selectedGenre);
+    const getSelectedMovie = () => cinema.movies.filter(movie => movie.id === cinema.selectedMovieId)[0];
 
     const upsertMovie = movie => {
         movie.genre = cinema.selectedGenre;
-        if (movie.id === '') {
-            movie.id = cinema.nextMovieId;
+        console.log("movie ", movie);
+        console.log("cinema.nextMovieId ", cinema.nextMovieId);
+        if (!movie.id) {
+            movie.id = parseInt(cinema.nextMovieId);
             setCinema(prev => {
                 return {
                     ...prev,
