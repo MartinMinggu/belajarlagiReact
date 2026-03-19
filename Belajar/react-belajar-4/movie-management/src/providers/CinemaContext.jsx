@@ -1,8 +1,6 @@
 import { createContext, useState } from "react"
 import moviesData from "../components/data/movies";
 import genresData from "../components/data/genres";
-import genres from "../components/data/genres";
-import movies from "../components/data/movies";
 const CinemaContext = createContext({
     selectedGenre: null,
     selectedMovieId: null,
@@ -85,7 +83,6 @@ const CinemaProvider = ({ children }) => {
             });
         }
     }
-
 
     const deleteMovie = movieId => {
         movieId = parseInt(movieId);

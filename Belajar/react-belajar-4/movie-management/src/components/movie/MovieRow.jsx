@@ -4,14 +4,8 @@ import { CinemaContext } from '../../providers/CinemaContext';
 import { useContext } from 'react';
 
 export default function MovieRow({ movie }) {
-    console.log('movie row terpangggil');
-    
-    console.log(movie);
-    
-
     const { selectMovie, deleteMovie } = useContext(CinemaContext);
     const { id, title, duration, production, status, rating, summary } = movie;
-
     const statusLabel = status => {
         switch (status) {
             case 'NS':

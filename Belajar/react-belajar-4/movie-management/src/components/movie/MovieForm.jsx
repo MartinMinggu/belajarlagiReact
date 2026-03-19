@@ -11,30 +11,11 @@ import { CinemaContext } from '../../providers/CinemaContext'
 import { useContext } from 'react';
 
 export default function MovieForm() {
-    // cancelMovieForm, insertMovie
     const { selectMovie, upsertMovie, selectedMovieId, getSelectedMovie } = useContext(CinemaContext);
-    let defaultValues =
-    {
-        // "id": null,
-        // "title": "",
-        // "duration": 200,
-        // "production": "",
-        // "status": "",
-        // "rating": "",
-        // "summary": ""
+    let defaultValues = selectedMovieId !== null ? getSelectedMovie(selectedMovieId) : {};
 
-    };
-    if (selectedMovieId !== null) {
-        defaultValues = getSelectedMovie(selectedMovieId);
-    }
-    console.log("defaultValues : ", defaultValues);
-    
-    const { register, handleSubmit } = useForm({
-        defaultValues: defaultValues
-    });
-    const saveMovie = input => {
-        upsertMovie({ ...input });
-    }
+    const { register, handleSubmit } = useForm({ defaultValues });
+    const saveMovie = input => upsertMovie({ ...input });
 
     return (
         <SimpleCard>

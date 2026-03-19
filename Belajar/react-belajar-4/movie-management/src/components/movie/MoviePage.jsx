@@ -6,11 +6,8 @@ import { useContext } from 'react';
 
 function iterateMovies(movies){
     let elements = [];
-    console.log(movies);
     
     for(let movie of movies){
-        console.log("movie ", movie);
-        
         elements.push(<MovieRow key={movie.id} movie={movie}></MovieRow>);
     }
     return (<>{elements}</>)
@@ -18,8 +15,6 @@ function iterateMovies(movies){
 
 export default function MoviePage(){
     const {selectGenre, selectMovie, selectMoviesByGenre, selectedGenre } = useContext(CinemaContext);
-    console.log(selectedGenre);
-    
     
     return (
         <>
