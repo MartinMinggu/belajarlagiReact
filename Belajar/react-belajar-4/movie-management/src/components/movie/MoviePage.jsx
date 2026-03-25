@@ -14,7 +14,7 @@ function iterateMovies(movies){
 }
 
 export default function MoviePage(){
-    const {selectGenre, selectMovie, selectMoviesByGenre, selectedGenre } = useContext(CinemaContext);
+    const {selectGenre, selectMovie, selectMoviesByGenre } = useContext(CinemaContext);
     
     return (
         <>
@@ -22,7 +22,7 @@ export default function MoviePage(){
                 <BaseButton type="button" onClick={() => selectGenre(null)}>Back to Genre List</BaseButton>
                 <BaseButton type="button" onClick={() => selectMovie(0)}>New Movie</BaseButton>
             </ButtonContainer>
-            {iterateMovies(selectMoviesByGenre(selectedGenre))}
+            {iterateMovies(selectMoviesByGenre())}
         </>
     );
 }

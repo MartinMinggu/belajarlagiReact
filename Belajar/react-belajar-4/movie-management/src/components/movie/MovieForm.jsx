@@ -8,14 +8,34 @@ import BaseTextarea from '../ui-element/BaseTextarea';
 import ratingData from '../data/rating';
 import FormRow from '../ui-element/FormRow';
 import { CinemaContext } from '../../providers/CinemaContext'
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 export default function MovieForm() {
     const { selectMovie, upsertMovie, selectedMovieId, getSelectedMovie } = useContext(CinemaContext);
-    let defaultValues = selectedMovieId !== null ? getSelectedMovie(selectedMovieId) : {};
+    // let defaultValues = selectedMovieId !== null ? getSelectedMovie(selectedMovieId) : {};
+    console.log("movie form mounted");
 
-    const { register, handleSubmit } = useForm({ defaultValues });
+    // const { register, handleSubmit, setValue } = useForm({ defaultValues });
+    const { register, handleSubmit, setValue, reset } = useForm();
     const saveMovie = input => upsertMovie({ ...input });
+    useEffect(() => {
+        console.log('use effect dijalankan');
+        const selectedMovie = getSelectedMovie();
+        if (selectedMovie) {
+            const { id, title, production, duration, status, rating, summary } = getSelectedMovie();
+            const selectedMovie = getSelectedMovie();
+            // if (selectedMovie) {
+            //     reset(selectedMovie); // otomatis set semua field sesuai object
+            // }
+            setValue('id', id);
+            setValue('title', title);
+            setValue('production', production);
+            setValue('duration', duration);
+            setValue('status', status);
+            setValue('rating', rating);
+            setValue('summary', summary);
+        }
+    }, [])
 
     return (
         <SimpleCard>

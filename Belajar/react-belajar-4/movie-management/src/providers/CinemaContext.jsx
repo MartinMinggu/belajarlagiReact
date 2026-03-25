@@ -58,6 +58,12 @@ const CinemaProvider = ({ children }) => {
         movie.genre = cinema.selectedGenre;
         console.log("movie ", movie);
         console.log("cinema.nextMovieId ", cinema.nextMovieId);
+        const isEmpty = Object.values(movie).some(value => !value);
+
+        if (isEmpty) {
+            alert("Masih ada data yang kosong!");
+            return;
+        }
         if (!movie.id) {
             movie.id = parseInt(cinema.nextMovieId);
             setCinema(prev => {
