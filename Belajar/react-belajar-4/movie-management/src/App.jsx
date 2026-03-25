@@ -4,31 +4,13 @@ import MoviePage from './components/movie/MoviePage';
 import MovieForm from './components/movie/MovieForm';
 import { CinemaContext } from './providers/CinemaContext.jsx'
 import { useContext } from 'react';
+import { RouterProvider } from 'react-router-dom'
+import router from './routers/router.jsx';
 
 function App() {
-  const { selectedGenre, selectedMovieId } = useContext(CinemaContext);
-
-  const getTitle = () => (selectedGenre === null) ? 'Genre List' : `${selectedGenre} Movies`;
-
-  const switchPage = () => {
-    if (selectedGenre === null) {
-      return <GenrePage />
-    }
-    else if (selectedGenre !== null && selectedMovieId === null) {
-      return (
-        <MoviePage />
-      );
-    } else if (selectedGenre !== null && selectedMovieId !== null) {
-      return (
-        <MovieForm />
-      );
-    }
-  }
-
   return (
-    <Layout title={getTitle()}>
-      {switchPage()}
-    </Layout>
+    <RouterProvider router={router}>
+    </RouterProvider>
   )
 }
 

@@ -1,16 +1,14 @@
 import { createContext, useState } from "react"
 import moviesData from "../components/data/movies";
 import genresData from "../components/data/genres";
+import cinemasData from "../components/data/cinemas"
 const CinemaContext = createContext({
-    selectedGenre: null,
-    selectedMovieId: null,
     genres: [],
     movies: [],
+    cinemas: [],
     nextMovieId: null,
-    selectGenre: () => { },
     insertGenre: () => { },
     deleteGenre: () => { },
-    selectMovie: () => { },
     selectMoviesByGenre: () => { },
     upsertMovie: () => { },
     deleteMovie: () => { },
@@ -19,12 +17,11 @@ const CinemaContext = createContext({
 const CinemaProvider = ({ children }) => {
     const [cinema, setCinema] = useState({
         selectedGenre: null,
-        selectedMovieId: null,
         genres: genresData,
         movies: moviesData,
+        cinemas: cinemasData,
         nextMovieId: 5
     });
-    const selectGenre = genre => setCinema(prev => ({ ...prev, selectedGenre: genre }));
 
     const insertGenre = genre => {
         genre = genre.trim().toLowerCase();
@@ -50,12 +47,10 @@ const CinemaProvider = ({ children }) => {
             };
         });
     }
-    const selectMovie = id => setCinema(prev => ({ ...prev, selectedMovieId: id }));
-    const selectMoviesByGenre = () => cinema.movies.filter(movie => movie.genre === cinema.selectedGenre);
-    const getSelectedMovie = () => cinema.movies.filter(movie => movie.id === cinema.selectedMovieId)[0];
+    const selectMoviesByGenre = genre => cinema.movies.filter(movie => movie.genre === genre);
+    const getSelectedMovie = id => cinema.movies.filter(movie => movie.id === parseInt(id))[0];
 
     const upsertMovie = movie => {
-        movie.genre = cinema.selectedGenre;
         console.log("movie ", movie);
         console.log("cinema.nextMovieId ", cinema.nextMovieId);
         const isEmpty = Object.values(movie).some(value => !value);
@@ -69,7 +64,6 @@ const CinemaProvider = ({ children }) => {
             setCinema(prev => {
                 return {
                     ...prev,
-                    selectedMovieId: null,
                     nextMovieId: prev.nextMovieId + 1,
                     movies: [...prev.movies, movie]
                 }
@@ -83,7 +77,6 @@ const CinemaProvider = ({ children }) => {
                 updatedMovies.push(movie);
                 return {
                     ...prev,
-                    selectedMovieId: null,
                     movies: updatedMovies
                 }
             });
@@ -104,15 +97,12 @@ const CinemaProvider = ({ children }) => {
     }
 
     const contextValue = {
-        selectedGenre: cinema.selectedGenre,
-        selectedMovieId: cinema.selectedMovieId,
         genres: cinema.genres,
         movies: cinema.movies,
+        cinemas: cinema.cinemas,
         nextMovieId: cinema.nextMovieId,
-        selectGenre,
         insertGenre,
         deleteGenre,
-        selectMovie,
         selectMoviesByGenre,
         upsertMovie,
         deleteMovie,

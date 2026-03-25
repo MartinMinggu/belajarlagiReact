@@ -2,10 +2,11 @@ import SimpleCard from '../ui-element/SimpleCard';
 import BaseButton from '../ui-element/BaseButton';
 import { CinemaContext } from '../../providers/CinemaContext';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function MovieRow({ movie }) {
-    const { selectMovie, deleteMovie } = useContext(CinemaContext);
-    const { id, title, duration, production, status, rating, summary } = movie;
+    const { deleteMovie } = useContext(CinemaContext);
+    const { id, title, duration, production, status, rating, summary, genre } = movie;
     const statusLabel = status => {
         switch (status) {
             case 'NS':
@@ -52,7 +53,7 @@ export default function MovieRow({ movie }) {
                 </div>
                 <div className="right">
                     <div className="button-container">
-                        <BaseButton type="button" onClick={() => selectMovie(id)}>Edit</BaseButton>
+                        <BaseButton as={Link} to={`/movieForm/${genre}/${id}`}>Edit</BaseButton>
                         <BaseButton type="button" onClick={() => deleteMovie(id)}>Delete</BaseButton>
                     </div>
                     <div>

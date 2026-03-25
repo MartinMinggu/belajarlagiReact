@@ -11,7 +11,7 @@ import { CinemaContext } from '../../providers/CinemaContext'
 import { useContext, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
-export default function MovieForm() {
+export default function CinemaForm() {
     const { movieId, genre } = useParams();
     const { upsertMovie, getSelectedMovie } = useContext(CinemaContext);
     const { register, handleSubmit, setValue } = useForm();

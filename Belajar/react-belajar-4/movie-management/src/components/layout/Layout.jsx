@@ -1,5 +1,7 @@
 import { styled } from 'styled-components';
 import PageHeader from './PageHeader';
+import { Outlet, useMatches } from 'react-router-dom';
+import NavigationButtons from './NavigationButtons';
 
 const AppContent = styled.div`
   font-family: sans-serif;
@@ -11,12 +13,22 @@ const GlobalContainer = styled.main`
   margin: 0 auto;
 `;
 
-export default function Layout({ children, title }) {
+export default function Layout() {
+    // const { genre } = useParams();
+    // const getTitle = () => (genre === null) ? 'Genre List' : `${genre} Movies`;
+    const matches = useMatches();
+    let tittle = matches.find(match => match.handle?.title).handle.title
+    const paramTitle = matches.find(match => match).params.genre;
+    if(paramTitle){
+        tittle = paramTitle + " " + tittle;
+    }
+
     return (<>
         <AppContent>
-            <PageHeader>{title}</PageHeader>
+            <NavigationButtons/>
+            <PageHeader>{tittle}</PageHeader>
             <GlobalContainer>
-                {children}
+                <Outlet></Outlet>
             </GlobalContainer>
         </AppContent>
     </>);
