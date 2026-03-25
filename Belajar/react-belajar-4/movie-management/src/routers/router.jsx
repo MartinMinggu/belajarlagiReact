@@ -14,44 +14,32 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <GenrePage />,
-                handle: {
-                    title: "Genres"
-                }
+                loader : () => ({title: "Genres"})
             },
             {
                 path: 'genre',
                 element: <GenrePage />,
-                handle: {
-                    title: "Genres"
-                }
+                loader : () => ({title: "Genres"})
             },
             {
                 path: 'movie/:genre',
                 element: <MoviePage />,
-                handle: {
-                    title: "Movies"
-                }
+                loader : context => ({title: `${context.params.genre} Movies` })
             },
             {
                 path: 'movieForm/:genre/:movieId?',
                 element: <MovieForm />,
-                handle: {
-                    title: "Movies Form"
-                }
+                loader : context => ({title: `${context.params.genre} Movies Form` })
             },
             {
                 path: 'cinemas',
                 element: <CinemaPage />,
-                handle: {
-                    title: "Cinema Form"
-                }
+                loader : () => ({title: `Cinemas` })
             },
             {
                 path: 'cinemaForm/:cinemaId?',
                 element: <CinemaForm />,
-                handle: {
-                    title: "Movies Form"
-                }
+                loader : () => ({title: `Cinema Form` })
             },
         ]
     }
