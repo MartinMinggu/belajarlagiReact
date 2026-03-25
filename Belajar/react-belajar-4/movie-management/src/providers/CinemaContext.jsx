@@ -7,22 +7,27 @@ const CinemaContext = createContext({
     movies: [],
     cinemas: [],
     nextMovieId: null,
+    nextCinemaId: null,
     insertGenre: () => { },
     deleteGenre: () => { },
     selectMoviesByGenre: () => { },
     upsertMovie: () => { },
     deleteMovie: () => { },
-    getSelectedMovie: () => { }
+    getSelectedMovie: () => { },
+    getSelectedCinema: () => { },
+    deleteCinema: () => { },
+    upsertCinema: () => { },
 })
 const CinemaProvider = ({ children }) => {
     const [cinema, setCinema] = useState({
-        selectedGenre: null,
         genres: genresData,
         movies: moviesData,
         cinemas: cinemasData,
-        nextMovieId: 5
+        nextMovieId: 5,
+        nextCinemaId: 4,
     });
 
+    // Genre Provider
     const insertGenre = genre => {
         genre = genre.trim().toLowerCase();
         const isExist = cinema.genres.includes(genre);
@@ -47,18 +52,21 @@ const CinemaProvider = ({ children }) => {
             };
         });
     }
+    // Movies Provider
     const selectMoviesByGenre = genre => cinema.movies.filter(movie => movie.genre === genre);
     const getSelectedMovie = id => cinema.movies.filter(movie => movie.id === parseInt(id))[0];
 
     const upsertMovie = movie => {
         console.log("movie ", movie);
         console.log("cinema.nextMovieId ", cinema.nextMovieId);
-        const isEmpty = Object.values(movie).some(value => !value);
 
+        // cek kosong
+        const isEmpty = Object.values(movie).some(value => !value);
         if (isEmpty) {
             alert("Masih ada data yang kosong!");
             return;
         }
+
         if (!movie.id) {
             movie.id = parseInt(cinema.nextMovieId);
             setCinema(prev => {
@@ -96,6 +104,51 @@ const CinemaProvider = ({ children }) => {
         });
     }
 
+    // Cinema Provider
+    const getSelectedCinema = id => cinema.cinemas.filter(bioskop => bioskop.id === parseInt(id))[0];
+
+    const deleteCinema = cinemaId => {
+        setCinema(prev => {
+            const updatedCinemas = prev.cinemas.filter(cin => cin.id !== parseInt(cinemaId));
+            return {
+                ...prev,
+                cinemas: updatedCinemas
+            }
+        });
+    }
+    const upsertCinema = bioskop => {
+
+        const isEmpty = Object.values(bioskop).some(value => !value);
+
+        if (isEmpty) {
+            alert("Masih ada data yang kosong!");
+            return;
+        }
+
+        if (!bioskop.id) {
+            bioskop.id = parseInt(cinema.nextCinemaId);
+            setCinema(prev => {
+                return {
+                    ...prev,
+                    nextCinemaId: prev.nextCinemaId + 1,
+                    cinemas: [...prev.cinemas, bioskop]
+                }
+            });
+        } else {
+            bioskop.id = parseInt(bioskop.id);
+            setCinema(prev => {
+                const selectedIndex = prev.cinemas.findIndex(bios => bios.id === bioskop.id);
+                const updatedBioskop = [...prev.cinemas];
+                updatedBioskop.splice(selectedIndex, 1);
+                updatedBioskop.push(bioskop);
+                return {
+                    ...prev,
+                    cinemas: updatedBioskop
+                }
+            });
+        }
+    }
+
     const contextValue = {
         genres: cinema.genres,
         movies: cinema.movies,
@@ -106,7 +159,10 @@ const CinemaProvider = ({ children }) => {
         selectMoviesByGenre,
         upsertMovie,
         deleteMovie,
-        getSelectedMovie
+        getSelectedMovie,
+        getSelectedCinema,
+        deleteCinema,
+        upsertCinema
     };
     return (
         <CinemaContext.Provider value={contextValue}>

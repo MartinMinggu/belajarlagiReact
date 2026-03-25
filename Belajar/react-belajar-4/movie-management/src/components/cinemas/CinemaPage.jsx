@@ -21,7 +21,7 @@ export default function CinemaPage() {
     return (
         <>
             <ButtonContainer>
-                <BaseButton as={Link} to={`/cinema/}`}>New Cinema</BaseButton>
+                <BaseButton as={Link} to={`/cinemaForm`}>New Cinema</BaseButton>
             </ButtonContainer>
             {iterateCinema(cinemas)}
         </>

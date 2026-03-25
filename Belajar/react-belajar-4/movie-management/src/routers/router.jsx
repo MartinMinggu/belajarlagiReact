@@ -4,6 +4,7 @@ import MoviePage from '../components/movie/MoviePage';
 import MovieForm from '../components/movie/MovieForm';
 import Layout from '../components/layout/Layout';
 import CinemaPage from '../components/cinemas/CinemaPage';
+import CinemaForm from '../components/cinemas/CinemaForm';
 
 const router = createBrowserRouter([
     {
@@ -44,7 +45,14 @@ const router = createBrowserRouter([
                 handle: {
                     title: "Cinema Form"
                 }
-            }
+            },
+            {
+                path: 'cinemaForm/:cinemaId?',
+                element: <CinemaForm />,
+                handle: {
+                    title: "Movies Form"
+                }
+            },
         ]
     }
 ]);
