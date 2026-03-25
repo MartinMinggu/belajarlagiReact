@@ -12,10 +12,6 @@ import { useContext, useEffect } from 'react';
 
 export default function MovieForm() {
     const { selectMovie, upsertMovie, selectedMovieId, getSelectedMovie } = useContext(CinemaContext);
-    // let defaultValues = selectedMovieId !== null ? getSelectedMovie(selectedMovieId) : {};
-    console.log("movie form mounted");
-
-    // const { register, handleSubmit, setValue } = useForm({ defaultValues });
     const { register, handleSubmit, setValue, reset } = useForm();
     const saveMovie = input => upsertMovie({ ...input });
     useEffect(() => {
@@ -24,9 +20,6 @@ export default function MovieForm() {
         if (selectedMovie) {
             const { id, title, production, duration, status, rating, summary } = getSelectedMovie();
             const selectedMovie = getSelectedMovie();
-            // if (selectedMovie) {
-            //     reset(selectedMovie); // otomatis set semua field sesuai object
-            // }
             setValue('id', id);
             setValue('title', title);
             setValue('production', production);
