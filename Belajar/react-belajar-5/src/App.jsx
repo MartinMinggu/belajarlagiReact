@@ -3,14 +3,15 @@ import './App.css'
 import HelloContainer from './components/HelloContainer';
 import CounterDisplay from './components/CounterDisplay';
 import ButtonAlert from './components/ButtonAlert';
+import { useCallback } from 'react';
 
 function App() {
   console.log('app dibuat');
 
   const [count, setCount] = useState(0);
-  const showAlert =()=>{
-    alert('This is Alert');
-  }
+  const showAlert = useCallback(() =>{
+    alert(`This is Alert ${count}`);
+  },[count]);
 
   return (
     <>

@@ -1,4 +1,7 @@
 Memorization : mengingat satu komponen yang tidak perlu dirender ulang jika tidak diperlukan
+-- Mencegah re-render komponen jika props tidak berubah
+✔️ Akan tetap re-render jika props yang diterima berubah
+❌ Tidak re-render kalau props tidak berubah
 
 menggunakan React.memo 
     import React from 'react';
@@ -6,7 +9,9 @@ menggunakan React.memo
 
     });
 
-misal komponen menggunakan sebuah prop dari indduk, jika induk keupdate dan berkaitan dengan komponen tersebut akan ke updat juga walaupun menggunakan use memo
+misal komponen menggunakan sebuah prop dari indduk, jika induk keupdate dan berkaitan dengan komponen tersebut akan ke update juga walaupun menggunakan use memo
 
 
+-- useCallback digunakan untuk memoization function supaya referensinya tidak berubah
+ueCalback: mirip use Effect tapi untuk function yang memiliki memo : supaya jika fungsi yang mempuunyai perubathan state akan ikut di update
 
