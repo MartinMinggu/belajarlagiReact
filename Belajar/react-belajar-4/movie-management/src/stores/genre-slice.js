@@ -14,7 +14,8 @@ const slice = createSlice({
         delete(state, action) {
             let { payload } = action;
             payload = payload.trim().toLowerCase();
-            const selectedIndex = state.genres.findIndex(currentGenre => currentGenre.id === payload);
+            debugger;
+            const selectedIndex = state.genres.findIndex(currentGenre => currentGenre=== payload);
             state.genres.splice(selectedIndex, 1);
         }
     }
