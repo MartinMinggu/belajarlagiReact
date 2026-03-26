@@ -4,6 +4,7 @@ import HelloContainer from './components/HelloContainer';
 import CounterDisplay from './components/CounterDisplay';
 import ButtonAlert from './components/ButtonAlert';
 import { useCallback } from 'react';
+import CashbackCalculator from './components/CashbackCalculator';
 
 function App() {
   console.log('app dibuat');
@@ -23,6 +24,7 @@ function App() {
       <HelloContainer />
       <CounterDisplay count={count} />
       <ButtonAlert onClick={showAlert} />
+      <CashbackCalculator/>
     </>
   )
 }
