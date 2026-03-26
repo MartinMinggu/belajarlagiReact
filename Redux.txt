@@ -1,0 +1,3 @@
+Redux library yang berfungsi menggantikan Context, Provider, Reducer
+1. Global stateL state(Reactifity) bersama yang bisa diakases setiap kompnent
+2. Provide data atau method yang siap dipaai oleh setiap komponen , biasanya CRUD

@@ -3,9 +3,15 @@ import BaseButton from '../ui-element/BaseButton';
 import { CinemaContext } from '../../providers/CinemaContext';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { cinemaAction } from '../../stores/cinema-slice';
 
 export default function CinemaRow({ id, name, location} ) {
-    const { deleteCinema } = useContext(CinemaContext);
+    // const { deleteCinema } = useContext(CinemaContext);
+    const dispacth = useDispatch();
+    const deleteCinema = id => {
+        dispacth(cinemaAction.delete(id));
+    }
   
     return (
         <SimpleCard>

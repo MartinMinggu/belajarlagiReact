@@ -5,20 +5,25 @@ import BaseButton from '../ui-element/BaseButton';
 import BaseRadioButton from '../ui-element/BaseRadioButton';
 import BaseDropdown from '../ui-element/BaseDropdown';
 import BaseTextarea from '../ui-element/BaseTextarea';
-import ratingData from '../data/rating';
+import ratingData from '../../data/rating';
 import FormRow from '../ui-element/FormRow';
-import { CinemaContext } from '../../providers/CinemaContext'
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { movieAction } from '../../stores/movies-slice';
 
 export default function MovieForm() {
     const { movieId, genre } = useParams();
-    const { upsertMovie, getSelectedMovie } = useContext(CinemaContext);
+    const dispatch = useDispatch();
+    const movies = useSelector(state => state.movie.movies);
+    const getSelectedMovie = id => {
+        return movies.filter(mov => mov.id == id)[0];
+    }
     const { register, handleSubmit, setValue } = useForm();
     const navigate = useNavigate();
     const saveMovie = input => {
         navigate(`/movie/${genre}`)
-        upsertMovie({ ...input });
+        dispatch(movieAction.upsert({ ...input }));
     }
     useEffect(() => {
         const selectedMovie = getSelectedMovie(movieId);

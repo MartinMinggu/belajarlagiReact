@@ -3,9 +3,13 @@ import BaseButton from '../ui-element/BaseButton';
 import { CinemaContext } from '../../providers/CinemaContext';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { movieAction } from '../../stores/movies-slice';
 export default function MovieRow({ movie }) {
-    const { deleteMovie } = useContext(CinemaContext);
+    const dispatch = useDispatch();
+    const deleteMovie = id =>{
+        dispatch(movieAction.delete(id));
+    }
     const { id, title, duration, production, status, rating, summary, genre } = movie;
     const statusLabel = status => {
         switch (status) {

@@ -1,9 +1,8 @@
 import MovieRow from './MovieRow';
 import BaseButton from '../ui-element/BaseButton';
 import ButtonContainer from '../ui-element/ButtonContainer';
-import { CinemaContext } from '../../providers/CinemaContext';
-import { useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function iterateMovies(movies) {
     let elements = [];
@@ -16,7 +15,10 @@ function iterateMovies(movies) {
 
 export default function MoviePage() {
     const { genre } = useParams();
-    const { selectMoviesByGenre } = useContext(CinemaContext);
+    const selectMoviesByGenre = genre => {
+        const movies = useSelector(state => state.movie.movies);
+        return movies.filter(mov => mov.genre === genre);
+    }
     return (
         <>
             <ButtonContainer>

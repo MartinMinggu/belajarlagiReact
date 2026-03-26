@@ -1,7 +1,6 @@
 import GenreForm from './GenreForm';
 import GenreRow from './GenreRow';
-import { CinemaContext } from '../../providers/CinemaContext'
-import { useContext } from 'react';
+import { useSelector } from 'react-redux'
 
 function iterateGenres(genres) {
     // genres, selectedGenre, deleteGenre
@@ -13,7 +12,7 @@ function iterateGenres(genres) {
 }
 
 export default function GenrePage() {
-    const { genres } = useContext(CinemaContext);
+    const genres = useSelector(state => state.genre.genres);
     return (
         <>
             <GenreForm></GenreForm>
@@ -21,3 +20,5 @@ export default function GenrePage() {
         </>
     );
 }
+
+// Promise dan ajax

@@ -2,11 +2,15 @@ import { useForm } from 'react-hook-form';
 import BaseTextbox from '../ui-element/BaseTextbox';
 import BaseButton from '../ui-element/BaseButton';
 import FormWrapper from '../ui-element/FormWrapper';
-import { CinemaContext } from '../../providers/CinemaContext'
-import { useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { genreAction } from '../../stores/genre-slice';
+
 
 export default function GenreForm() {
-    const { insertGenre } = useContext(CinemaContext);
+    const dispatch = useDispatch();
+    const insertGenre = genre => {
+        dispatch(genreAction.insert(genre));
+    }
 
     const { register, handleSubmit, reset } = useForm();
 

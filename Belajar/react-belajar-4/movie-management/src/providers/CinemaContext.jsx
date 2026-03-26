@@ -1,7 +1,7 @@
 import { createContext, useReducer, useState } from "react"
-import moviesData from "../components/data/movies";
-import genresData from "../components/data/genres";
-import cinemasData from "../components/data/cinemas"
+import moviesData from "../data/movies";
+import genresData from "../data/genres";
+import cinemasData from "../data/cinemas"
 import CinemaReducer from "../reducers/CinemaReducer";
 const CinemaContext = createContext({
     genres: [],
