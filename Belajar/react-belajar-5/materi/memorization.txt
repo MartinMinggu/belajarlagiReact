@@ -1,0 +1,12 @@
+Memorization : mengingat satu komponen yang tidak perlu dirender ulang jika tidak diperlukan
+
+menggunakan React.memo 
+    import React from 'react';
+    const Component = React.memo(() => {
+
+    });
+
+misal komponen menggunakan sebuah prop dari indduk, jika induk keupdate dan berkaitan dengan komponen tersebut akan ke updat juga walaupun menggunakan use memo
+
+
+
