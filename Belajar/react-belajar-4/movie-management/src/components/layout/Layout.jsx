@@ -17,8 +17,7 @@ export default function Layout() {
     // const { genre } = useParams();
     // const getTitle = () => (genre === null) ? 'Genre List' : `${genre} Movies`;
     const matches = useMatches();
-    const title = matches.find(match => match.data?.title).data.title;
-    // let tittle = matches.find(match => match.handle?.title).handle.title
+    const title = matches.find(match => match.loaderData?.title)?.loaderData?.title;    // let tittle = matches.find(match => match.handle?.title).handle.title
     // const paramTitle = matches.find(match => match).params.genre;
     // if(paramTitle){
     //     tittle = paramTitle + " " + tittle;
@@ -26,7 +25,7 @@ export default function Layout() {
 
     return (<>
         <AppContent>
-            <NavigationButtons/>
+            <NavigationButtons />
             <PageHeader>{title}</PageHeader>
             <GlobalContainer>
                 <Outlet></Outlet>
