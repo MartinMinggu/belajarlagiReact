@@ -1,7 +1,7 @@
 export default function Todo({id, title, completed}){
-    return <div>
-        <p hidden>{id}</p>
-        <p>{title}</p>
-        <p>{completed ? "completed" : "Not"}</p>
-    </div>
+    return <tr>
+        <td hidden>{id}</td>
+        <td>{title}</td>
+        <td> <input type="checkbox" readOnly  checked={completed}></input></td>
+    </tr>
 }

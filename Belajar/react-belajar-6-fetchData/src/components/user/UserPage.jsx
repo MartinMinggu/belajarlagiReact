@@ -6,7 +6,7 @@ import TodoPage from "../todo/TodoPage";
 // BaseUrl = 'https://jsonplaceholder.typicode.com'
 export default function UserPage() {
     const [id, setId] = useState(0);
-    const [selectedId, setSelectedId] = useState(0);
+    const [selectedUser, setSelectedUser] = useState({});
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function UserPage() {
 
         let element = [];
         for (let user of users) {
-            element.push(<UserRow key={user.id} {...user} handleSelectTodo={() => setSelectedId(user.id)} />)
+            element.push(<UserRow key={user.id} {...user} handleSelectTodo={() => setSelectedUser(user)} />)
         }
         return (<>{element}</>)
     }
@@ -72,7 +72,7 @@ export default function UserPage() {
         </div>
         <div className="todo">
             <h1>Todo List</h1>
-            <TodoPage id={selectedId}  />
+            <TodoPage {...selectedUser}  />
 
         </div>
     </>
