@@ -1,0 +1,103 @@
+body {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f6f8fb;
+    color: #2c3e50;
+}
+
+.wrapper {
+    width: 1100px;
+    margin: 40px auto;
+    display: flex;
+    gap: 10px;
+}
+
+/* FILTER */
+.filter {
+    background-color: #ffffff;
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.filter>span {
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.filter>select {
+    height: 32px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #CBF3BB;
+    outline: none;
+    transition: 0.2s;
+}
+
+.filter>select:focus {
+    border-color: #4da3ff;
+}
+
+/* TABLE CONTAINER */
+.table-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* TABLE */
+.table-container table {
+    border-collapse: collapse;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* HEADER */
+.table-container thead td {
+    background-color: #4da3ff;
+    color: white;
+    padding: 14px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* ROWS */
+.table-container tbody tr {
+    transition: 0.2s;
+}
+
+.table-container tbody tr:nth-child(odd) {
+    background-color: #f9fbfd;
+}
+
+.table-container tbody tr:nth-child(even) {
+    background-color: #eef3f8;
+}
+
+/* HOVER EFFECT */
+.table-container tbody tr:hover {
+    background-color: #dceeff;
+}
+
+/* CELL */
+.table-container tbody td {
+    padding: 14px;
+    border-bottom: 1px solid #eef1f5;
+}
+
+.table-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.todo {
+    background-color: #ffffff;
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
